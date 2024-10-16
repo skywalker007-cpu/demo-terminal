@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@4.19.0/css/xterm.css" />
+  <script src="https://cdn.jsdelivr.net/npm/xterm@4.19.0/lib/xterm.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    textarea {
+      width: 20em;
+      height: 10em;
+      border-radius: 0.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="terminal"></div>
+  <div id="chat-box">
+    <textarea id="chat-input" placeholder="Enter a prompt"></textarea>
+  </div>
+  <div id="button">
+    <button onclick="sendPrompt()">Send</button>
+  </div>
+</body>
+<script src="client.js"></script>
+
+</html>
