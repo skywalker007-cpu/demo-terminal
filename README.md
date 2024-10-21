@@ -1,1 +1,1 @@
-# demo-terminal
+# <img src="./assets/logo_32.png"/> DVD Terminal
