@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 /* { import external render libraries } ------------------------------------------------- */
 import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
-import Tag from "../tag/tag";
 import { CodeBlock, dracula } from "react-code-blocks";
 import ReactShowdown from "react-showdown";
 import Icon from "../icon/icon";
@@ -190,37 +189,6 @@ const MarkDownSection = ({ children }) => {
   return (
     <div className="markdown-section" style={{ display: "inline-block" }}>
       <ReactShowdown markdown={children} />
-    </div>
-  );
-};
-const TagSection = ({ children }) => {
-  const tagRef = useRef();
-
-  return (
-    <div
-      style={{
-        position: "relative",
-
-        width: default_tag_max_Width,
-
-        display: "inline-block",
-        height: default_font_size,
-        fontSize: `${default_font_size}px`,
-        padding: `${default_font_size / 2}px ${default_font_size}px ${
-          default_font_size / 2
-        }px ${default_font_size}px`,
-      }}
-    >
-      <Tag
-        config={{
-          reference: tagRef,
-          type: "file",
-          label: children,
-          style: {
-            maxWidth: default_tag_max_Width,
-          },
-        }}
-      />
     </div>
   );
 };
