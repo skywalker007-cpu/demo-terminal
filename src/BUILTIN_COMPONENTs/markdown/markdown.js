@@ -4,7 +4,7 @@ import Latex from "react-latex-next";
 import "katex/dist/katex.min.css";
 import { CodeBlock, dracula } from "react-code-blocks";
 import ReactShowdown from "react-showdown";
-import Icon from "../icon/icon";
+import Icon from "../icon/icon.js";
 /* { style } --------------------------------------------------------------------- */
 import "./markdown.css";
 
@@ -59,12 +59,10 @@ const CodeSection = ({ language, children }) => {
           height: default_font_size + 20,
 
           opacity: 1,
-          borderRadius: `${default_border_radius - 6}px ${
-            default_border_radius - 6
-          }px 0 0`,
-          backgroundColor: `rgb(${R + default_forground_color_offset / 2}, ${
-            G + default_forground_color_offset / 2
-          }, ${B + default_forground_color_offset / 2})`,
+          borderRadius: `${default_border_radius - 6}px ${default_border_radius - 6
+            }px 0 0`,
+          backgroundColor: `rgb(${R + default_forground_color_offset / 2}, ${G + default_forground_color_offset / 2
+            }, ${B + default_forground_color_offset / 2})`,
           boxShadow: `0 2px 16px rgba(0, 0, 0, 0.64)`,
         }}
       >
@@ -77,9 +75,8 @@ const CodeSection = ({ language, children }) => {
             left: 8,
 
             fontSize: `${default_font_size + 1}px`,
-            color: `rgb(${R + default_font_color_offset}, ${
-              G + default_font_color_offset
-            }, ${B + default_font_color_offset})`,
+            color: `rgb(${R + default_font_color_offset}, ${G + default_font_color_offset
+              }, ${B + default_font_color_offset})`,
           }}
         >
           {language}
@@ -91,12 +88,10 @@ const CodeSection = ({ language, children }) => {
             right: 5,
 
             width: 28,
-            padding: `${default_font_size - 4}px ${default_font_size}px ${
-              default_font_size - 4
-            }px ${default_font_size}px`,
-            border: `1px solid rgba(${R + default_forground_color_offset}, ${
-              G + default_forground_color_offset
-            }, ${B + default_forground_color_offset} , 0)`,
+            padding: `${default_font_size - 4}px ${default_font_size}px ${default_font_size - 4
+              }px ${default_font_size}px`,
+            border: `1px solid rgba(${R + default_forground_color_offset}, ${G + default_forground_color_offset
+              }, ${B + default_forground_color_offset} , 0)`,
             borderRadius: `${default_border_radius - 7}px`,
             backgroundColor: style.backgroundColor,
           }}
@@ -130,9 +125,8 @@ const CodeSection = ({ language, children }) => {
               transform: "translateY(-55%)",
 
               fontSize: `${default_font_size}px`,
-              color: `rgb(${R + default_font_color_offset}, ${
-                G + default_font_color_offset
-              }, ${B + default_font_color_offset})`,
+              color: `rgb(${R + default_font_color_offset}, ${G + default_font_color_offset
+                }, ${B + default_font_color_offset})`,
               PointerEvents: "none",
               userSelect: "none",
             }}
@@ -175,9 +169,8 @@ const SingleLineCodeSection = ({ language, children }) => {
       customStyle={{
         display: "inline-block",
         fontSize: `${default_font_size}px`,
-        color: `rgb(${R + default_font_color_offset}, ${
-          G + default_font_color_offset
-        }, ${B + default_font_color_offset})`,
+        color: `rgb(${R + default_font_color_offset}, ${G + default_font_color_offset
+          }, ${B + default_font_color_offset})`,
         backgroundColor: `rgb(${R - 8}, ${G - 8}, ${B - 8})`,
         borderRadius: default_border_radius,
         overflowY: "hidden",
@@ -526,12 +519,10 @@ const Markdown = ({ children, style }) => {
         backgroundColor:
           style && style.backgroundColor
             ? style.backgroundColor
-            : `rgb(${R + default_forground_color_offset}, ${
-                G + default_forground_color_offset
-              }, ${B + default_forground_color_offset})`,
-        color: `rgb(${R + default_font_color_offset}, ${
-          G + default_font_color_offset
-        }, ${B + default_font_color_offset})`,
+            : `rgb(${R + default_forground_color_offset}, ${G + default_forground_color_offset
+            }, ${B + default_forground_color_offset})`,
+        color: `rgb(${R + default_font_color_offset}, ${G + default_font_color_offset
+          }, ${B + default_font_color_offset})`,
 
         overflow: "hidden",
       }}

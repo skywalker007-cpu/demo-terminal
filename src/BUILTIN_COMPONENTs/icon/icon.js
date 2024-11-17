@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { iconManifest } from "./icon_manifest";
+import { iconManifest } from "./icon_manifest.js";
 
 const Icon = ({ src, ...props }) => {
   const [iconSrc, setIconSrc] = useState(null);
