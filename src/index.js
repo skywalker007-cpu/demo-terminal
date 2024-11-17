@@ -10,8 +10,8 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/chat" element={<ChatPageDemo />} />
+        <Route path="/" element={<ChatPageDemo />} />
+        <Route path="/chat" element={<App />} />
       </Routes>
     </Router>
   </React.StrictMode>

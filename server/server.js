@@ -2,36 +2,43 @@ import express from 'express';
 import http from 'http';
 import { WebSocketServer } from 'ws';
 import { handleTerminalConnection, setSharedTerminalMode } from './terminal.js';
+import { handleChatConnection } from './chat_server.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-// import { handleChatConnection } from './chat_server.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocketServer({ server });
+
+const terminalWss = new WebSocketServer({ noServer: true });
+const chatWss = new WebSocketServer({ noServer: true });
 
 setSharedTerminalMode(false);
 
-// wss.on('connection', (ws) => {
-//     ws.on('message', (message) => {
-//         const msg = JSON.parse(message);
+// WebSocket handling for terminal
+terminalWss.on('connection', handleTerminalConnection);
 
-//         if (msg.type === 'chat-input') {
-//             // Directly handle chat messages without overwriting terminal logic
-//             handleChatConnection(ws);
-//         } else if (msg.type === 'command') {
-//             handleTerminalConnection(ws);
-//         }
-//     });
+// WebSocket handling for chat
+chatWss.on('connection', handleChatConnection);
 
-//     ws.on('close', () => {
-//         console.log('WebSocket client disconnected');
-//     });
-// });
-wss.on('connection', handleTerminalConnection);
+// Upgrade WebSocket connections
+server.on('upgrade', (request, socket, head) => {
+    const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
+
+    if (pathname === '/terminal') {
+        terminalWss.handleUpgrade(request, socket, head, (ws) => {
+            terminalWss.emit('connection', ws, request);
+        });
+    } else if (pathname === '/chat') {
+        chatWss.handleUpgrade(request, socket, head, (ws) => {
+            chatWss.emit('connection', ws, request);
+        });
+    } else {
+        socket.destroy();
+    }
+});
 
 app.use(express.static(path.join(__dirname, '../build')));
 app.get('*', (req, res) => {

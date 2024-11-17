@@ -236,18 +236,19 @@ const Chat = () => {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    socketRef.current = new WebSocket("ws://localhost:6060");
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const ws = new WebSocket(`${protocol}//${window.location.host}/chat`);
+    socketRef.current = ws;
 
     socketRef.current.onmessage = (event) => {
       const { type, response } = JSON.parse(event.data);
       if (type === "chat-response") {
-        setMessages((prev) => [...prev, { role: "assistant", message: response }]);
+        const formattedResponse = `\`\`\`bash\n${response}\n\`\`\``;
+        setMessages((prev) => [...prev, { role: "terminal", message: formattedResponse }]);
       }
     };
 
-    return () => {
-      socketRef.current.close();
-    };
+    return () => ws.close();
   }, []);
 
   const on_input_submit = useCallback(() => {

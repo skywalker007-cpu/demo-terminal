@@ -8,7 +8,7 @@ const App = () => {
 
     useEffect(() => {
         const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        const ws = new WebSocket(`${protocol}//${window.location.host}`);
+        const ws = new WebSocket(`${protocol}//${window.location.host}/terminal`);
         setSocket(ws);
 
         return () => ws.close();

@@ -1,5 +1,5 @@
 // src/components/Chat.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ChatComponent = ({ socket }) => {
     const [prompt, setPrompt] = useState('');
@@ -10,6 +10,14 @@ const ChatComponent = ({ socket }) => {
             setPrompt('');
         }
     };
+
+    useEffect(() => {
+        return () => {
+            if (socket) {
+                socket.close();
+            }
+        };
+    }, [socket]);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1em' }}>
