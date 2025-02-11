@@ -18,7 +18,7 @@ export async function processWithAI(prompt) {
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo",
-            messages: [{ role: "user", content: `Convert this user request into corresponding terminal command in ${shell}: ${prompt}` }],
+            messages: [{ role: "user", content: `In ${shell}, provide only the simplest terminal command for: ${prompt}. Do not include any explanations, descriptions, or additional text. Output only the command itself.` }],
             max_tokens: 50
         })
     });

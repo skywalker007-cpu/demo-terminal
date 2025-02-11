@@ -1,4 +1,3 @@
-
 const socketProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 const socketUrl = `${socketProtocol}//${window.location.host}`;
 const socket = new WebSocket(socketUrl);
@@ -9,7 +8,7 @@ socket.onmessage = (event) => {
         // Handle AI response or command output from the server in chat
         console.log("AI Response:", data.response);
     } else if (data.type === 'terminal-output') {
-        // Handle terminal output in the xterm.js terminal
+        // display the actual output from the command from the server to the xterm.js (terminal)
         term.write(data.output);
     }
 }
@@ -48,11 +47,13 @@ function init() {
     });
 }
 
+// used for typing command in the terminal
 function runCommand(command) {
     socket.send(JSON.stringify({ type: 'command', command: command }));
 }
 
 function sendPrompt() {
+    // set the prompt to chat type and send the prompt to the server
     const prompt = document.getElementById('chat-input').value;
     socket.send(JSON.stringify({ type: 'chat', prompt }));
 }
